@@ -1,0 +1,19 @@
+{
+  "name": "zhihu_spider",
+  "version": "1.0.0",
+  "description": "知乎爬虫，爬取知乎盐选会员小说",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WillamYang/zhihu_spider.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WillamYang/zhihu_spider/issues"
+  },
+  "homepage": "https://github.com/WillamYang/zhihu_spider#readme"
+}

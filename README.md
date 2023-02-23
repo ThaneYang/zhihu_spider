@@ -6,9 +6,19 @@
 
 知乎爬虫，爬取知乎盐选会员小说
 
-通过本项目可以实现，爬取知乎盐选会员里的小说
+通过本项目，可以实现在微信小程序端爬取知乎盐选VIP会员里的小说
 
 前提是账号已经开通盐选会员
+
+
+
+### 技术栈
+
+微信小程序
+
+Uniapp应用框架
+
+小程序云开发
 
 
 
@@ -28,7 +38,7 @@ https://www.zhihu.com/market/paid_column/1315624454782238720/section/13156262123
 
 
 
-打开book.js，修改cookies
+打开pages/catchBook/catchOneBook.js，修改cookies
 
 将复制的cookies填写上去
 
@@ -38,172 +48,59 @@ const cookies = `_ga=GA1.2.915669292.1574093729; q_c1=74385b8ce56a40ccbbfdcc101e
 
 
 
-### 二、爬取文章
+#### 二、小程序项目的搭建
 
+通过HbuilderX，新建项目，勾选云开发
 
+![image-20230223093518697](http://yzwpic.weimayi.cn/img/image-20230223093518697.png)
 
 
 
-// 抓取单本书
-// 这里的url是这本书的路由地址
-// story 为 分类名称
-let url = process.argv[2]
-let category = process.argv[3]
-start(url, 1, category)
+将uniCloud下的cloudfunctions和database两个目录拷贝到本地新建的项目uniCloud中
 
-执行
+![image-20230223093710494](http://yzwpic.weimayi.cn/img/image-20230223093710494.png)
 
-``` 正常
-node oneBook 'https://www.zhihu.com/xen/market/remix/paid_column/1210518613973028864' 'story' 'romantic'
-```
 
-``` 不存在
-node oneBook 'https://www.zhihu.com/remix/albums/1309143181594935296' 'story' 'romantic'
-```
 
-``` 不存在
-node oneBook 'https://www.zhihu.com/xen/market/remix/paid_column/1248616106182778880' 'story' 'romantic'
-```
+将pages/catchBook拷贝到本地新建的pages目录中，同时在pages.json中添加该页面路径
 
-```
-node oneBook 'https://www.zhihu.com/xen/market/remix/paid_column/1144205341066739712' 'job' 'market'
-```
+![image-20230223093910606](http://yzwpic.weimayi.cn/img/image-20230223093910606.png)
 
-``` 惊魂倒计时 只拉取到部分文章
-node oneBook 'https://www.zhihu.com/xen/market/remix/paid_column/1315624454782238720' 'story' 'suspense'
-```
 
 
+运行小程序项目
 
-明朝那些事儿全集（2020 版）
-1262365258993737728
-https://www.zhihu.com/xen/market/remix/paid_column/1262365258993737728
+![image-20230223094012740](http://yzwpic.weimayi.cn/img/image-20230223094012740.png)
 
 
- <!-- https://www.zhihu.com/remix/albums/1309143181594935296 -->
- <!-- 报错 -->
 
+打开catchBook页面
 
- 测试云开发抓包
+![image-20230223094120906](http://yzwpic.weimayi.cn/img/image-20230223094120906.png)
 
- 'https://www.zhihu.com/xen/market/remix/paid_column/1209068423537557504' 'story' 'anecdote'
 
-"bookId": "1209068423537557504"
-"title": "非洲死神埃博拉：让人身体爆炸的「丧尸」病毒"
-"title": "被人遗忘的 H1N1，「祖先」病毒曾感染世界 1/3 人口"
-"title": "魔幻纪实：我们可能从未真正战胜 SARS"
-"title": "鼠疫猖狂：每一次天灾，都是人祸"
-"title": "用性病定义艾滋病，人类真的太愚昧了"
 
-测试章节乱序问题
-"name": "完美谋杀：一位老刑警笔下的 7 个真实重案故事"
-'https://www.zhihu.com/xen/market/remix/paid_column/1187437252308869120' 'story' 'suspense'
 
 
 
 
+#### 三、开始爬取
 
+点击”爬取一本书“，爬取某一本知乎盐选上的小说
 
+https://www.zhihu.com/xen/market/remix/paid_column/1350774263411064832
 
+![image-20230223120027633](http://yzwpic.weimayi.cn/img/image-20230223120027633.png)
 
 
 
 
 
+点击”爬取列表“，则爬取某个分类下的小说，按页码来爬取，比如爬取第一页的10条
 
+https://www.zhihu.com/xen/market/vip/remix-album
 
-
-
-
-列表页面访问地址
-https://www.zhihu.com/market/sort/quality_courses/story?level1=story&level2=suspense
-
-开始爬取
-url 为 列表第一页的url接口请求地址，不是页面的地址
-comic 为 分类名称
-
-只支持抓取二级分类下的列表页面
-
-故事-漫画'story' 'comic'
-```
-node index 'https://api.zhihu.com/market/categories/comic?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'person' 'shuping'
-```
-
-
-
-造假数据
-https://www.yezismile.com/book/index
-先拉取漫画分类
-将bookId改为001 002 003
-每本书只留一个章节
-修改章节内容
-
-
-
-
-一、悬疑推理'story' 'suspense'
-故事-悬疑
-'https://api.zhihu.com/market/categories/suspense?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2'
-文学-悬疑推理
-'https://api.zhihu.com/market/categories/mystery?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2'
-
-二、武侠科幻'story' 'Scifi'
-故事-全部
-https://api.zhihu.com/market/categories/story?limit=10&dataType=new&level=1&sort_type=hottest&right_type=svip_free&study_type=album
-
-三、奇闻异事'story' 'anecdote'
-文学-全部
-https://api.zhihu.com/market/categories/literature?limit=10&dataType=new&level=1&sort_type=hottest&right_type=svip_free&study_type=album
-
-四、职场小说'job' 'market'
-'https://api.zhihu.com/market/categories/market?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'job' 'market'
-
-
-
-
-从下往上倒着来更新！！！
-
-
-
-以下为要抓取的类目
-
-故事-悬疑√
-node index 'https://api.zhihu.com/market/categories/suspense?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'suspense'
-
-文学-悬疑推理'literature' 'mystery'，合并到上个分类
-node index 'https://api.zhihu.com/market/categories/mystery?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'suspense'
-
-故事-科幻，改为武侠科幻
-node index 'https://api.zhihu.com/market/categories/Scifi?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'Scifi'
-
-文学-武侠科幻'literature' 'swordsman'，合并到上个分类
-node index 'https://api.zhihu.com/market/categories/swordsman?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'Scifi'
-
-文学-神话传说
-node index 'https://api.zhihu.com/market/categories/legends?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'literature' 'legends'
-
-文学-中国文学
-node index 'https://api.zhihu.com/market/categories/chinese?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'literature' 'chinese'
-
-文学-人物传记
-node index 'https://api.zhihu.com/market/categories/biography?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'literature' 'biography'
-
-故事-历史，改为历史风云
-node index 'https://api.zhihu.com/market/categories/history?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'history'
-
-文学-历史风云'literature' 'historical'，合并到上个分类
-node index 'https://api.zhihu.com/market/categories/historical?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'history'
-
-故事-奇闻，改为奇闻异事
-node index 'https://api.zhihu.com/market/categories/anecdote?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'anecdote'
-
-故事-亲历'story' 'personal-experience'，合并到上个分类
-node index 'https://api.zhihu.com/market/categories/personal-experience?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'story' 'anecdote'
-
-职人-职场小说*
-node index 'https://api.zhihu.com/market/categories/market?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=2' 'job' 'market'
-
-
+![image-20230223115225882](http://yzwpic.weimayi.cn/img/image-20230223115225882.png)
 
 
 

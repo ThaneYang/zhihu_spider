@@ -1,7 +1,6 @@
 ## 知乎盐选爬虫
 
 
-
 ### 功能介绍
 
 知乎爬虫，爬取知乎盐选会员小说
@@ -106,61 +105,6 @@ https://www.zhihu.com/xen/market/vip/remix-album
 
 
 
-
-
-
-
-
-
-科学
-let pageUrl = 'https://api.zhihu.com/market/categories/science?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'science'
-
-互联网
-let pageUrl = 'https://api.zhihu.com/market/categories/network?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'network'
-
-理财
-let pageUrl = 'https://api.zhihu.com/market/categories/financial?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'financial'
-
-艺术
-let pageUrl = 'https://api.zhihu.com/market/categories/art?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'art'
-
-社科
-let pageUrl = 'https://api.zhihu.com/market/categories/social?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'social'
-
-成长
-let pageUrl = 'https://api.zhihu.com/market/categories/psychology?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'psychology'
-
-职场
-let pageUrl = 'https://api.zhihu.com/market/categories/job?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'job'
-
-教育
-let pageUrl = 'https://api.zhihu.com/market/categories/edu?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'edu'
-
-健康
-let pageUrl = 'https://api.zhihu.com/market/categories/lifestyle?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'lifestyle'
-
-亲子
-let pageUrl = 'https://api.zhihu.com/market/categories/parental?limit=10&dataType=new&sort_type=hottest&study_type=album&right_type=&is_finished=&level=1'
-let level1 = 'story2'
-let level2 = 'parental'
 
 
 
